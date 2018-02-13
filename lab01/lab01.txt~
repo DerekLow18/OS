@@ -1,0 +1,32 @@
+ls aldt- What does this do and why does Sven like it?
+ls lists the non-hidden contents of the directory. With -a, it will list all (including hidden) files. -l produces long form, which provides further information concerning the directory and files within. -d lists only the directory itself, and not the contents of that folder. -t displays last time of modification (sorts if there are multiple folders).
+
+The command is nice because it displays owner of the folder, location, number of files in targetted folder, and last time of modification.
+
+1.There are no words that start with the sequence "cie", using "\<cie.*\>" as the targetstring.
+
+I found 3585 words have a c, any number of characters, an i, any number of characters, and an e.
+
+2. ls /etc/*.conf -a > ~/foo.txt -r
+
+3.history 25
+
+4.find /etc/ -mindepth 1 -maxdepth 1 -type d | wc -l
+OR
+ls -d /etc/*/ | wc -l
+Both commands give me the same number of counted directories.
+
+5.head /usr/share/dict/american-english -n 10000 | tail -n 6
+Displays words 10000-10005
+Merck's | Mercuries | Mercurochrome | Mercurochrome's | Mercury | Mercury's
+
+6. d) *log*
+
+7.Using "od -c WANIP.BAT" indicates that the lines are terminated with "\r".
+Byte 0x19A location is the character "F". This can be identified using the command "od -Ax -c WANIP.BAT".
+
+8.find . -type f -name "*yourSubstringHere*" to start from current directory, replace "." with "~" for home or "/" for root.
+
+
+
+

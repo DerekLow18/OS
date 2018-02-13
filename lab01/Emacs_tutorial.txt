@@ -1,0 +1,343 @@
+
+Copyright (c) 1985 Free Software Foundation, Inc;  See end for conditions.
+You are looking at a portion the Emacs tutorial.
+
+Last modified by Sven E. Anderson (sanderso@bard.edu) for use in an
+introductory CS course.  This version is much shorter than the
+original, which you can see by typing M-x help-with-tutorial.  Deleted
+sections are indicated by ellipses.
+
+====================================================================
+First of all notice that there are menu items at the top of your
+window.  These work just fine, but will not be used in this tutorial.
+====================================================================
+
+
+Emacs commands generally involve the CONTROL key (sometimes labeled
+CTRL or CTL) or the META key (sometimes labeled EDIT or ALT).  Rather than
+write that in full each time, we'll use the following abbreviations:
+
+ C-<chr>  means hold the CONTROL key while typing the character <chr>
+	  Thus, C-f would be: hold the CONTROL key and type f.
+
+ M-<chr> means press AND RELEASE the ESC key and then type <chr>.  We
+         sometimes also write <ESC> for the ESC key, but M is shorter.
+	 'M' stands for "meta" here.
+
+Important note: to end the Emacs session, type C-x C-c.  (Two characters.)
+The characters ">>" at the left margin indicate directions for you to
+try using a command.    For instance,
+
+>>>  C-v 
+
+means  you should type Control, hold it down, hit and release 'v'.  Do it now!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Middle of page left blank for didactic purposes.  Text continues below]
+
+
+
+Aha, you must have hit C-v.  Good job.
+
+
+
+>>  Now type C-v (View next screen) again to move to the next screen.
+	(go ahead, do it by depressing the control key and v together).
+	From now on, you'll be expected to do this whenever you finish
+	reading the screen.  If your keyboard has a PAGE-DOWN key, that
+	should do the same thing.
+
+Note that there is an overlap when going from screen to screen; this
+provides some continuity when moving through the file.
+
+The first thing that you need to know is how to move around from
+place to place in the file.  You already know how to move forward a
+screen, with C-v.  To move backwards a screen, type M-v (depress the
+ESC key and type v.
+
+
+>>  Try typing M-v and then C-v to move back and forth a few times.
+
+
+* SUMMARY
+---------
+
+The following commands are useful for viewing screenfuls:
+
+	C-v	Move forward one screenful
+	M-v	Move backward one screenful
+	C-l	Clear screen and redisplay everything
+		 putting the text near the cursor at the center.
+		 (That's control-L, not control-1.)
+
+>> Find the cursor and remember what text is near it.
+   Then type a C-l.
+   Find the cursor again and see what text is near it now.
+
+
+* BASIC CURSOR CONTROL
+----------------------
+
+Getting from screenful to screenful is useful, but how do you
+reposition yourself within a given screen to a specific place?  There
+are several ways you can do this.  The best way for big moves is the
+mouse.  Simply click on the position where you want the cursor to go.
+Note that you can only put the cursor on existing, typed characters.
+Try moving the cursor with the mouse now.
+
+Another way (not the best, but the most basic) is to use the commands
+previous, backward, forward and next.  As you can imagine these
+commands (which are given to Emacs as C-p, C-b, C-f, and C-n
+respectively) move the cursor from where it currently is to a new
+place in the given direction.  Here, in a more graphical form are the
+commands:
+ 
+			  Previous line, C-p
+				  :
+				  :
+   Backward, C-b .... Current cursor position .... Forward, C-f
+				  :
+				  :
+			  Next line, C-n
+
+>> Move the cursor to the line in the middle of that diagram
+   and type C-l to see the whole diagram centered in the screen.
+
+You'll probably find it easy to think of these by letter.  P for
+previous, N for next, B for backward and F for forward.  These are
+the basic cursor positioning commands and you'll be using them ALL
+the time so it would be of great benefit if you learn them now.
+
+>> Do a few C-n's to bring the cursor down to this line.
+
+>> Move into the line with C-f's and then up with C-p's.
+   See what C-p does when the cursor is in the middle of the line.
+
+
+OK, ok, the arrows, if you have them, also work.  However, it is
+usually faster to use C-n and C-p, since you don't have to move your
+hands from home position on the keyboard.  Go ahead and try the
+arrows, too.
+
+
+
+
+
+
+
+
+Lines are separated by Newline characters.  For most applications
+there should normally be a Newline character at the end of the text,
+as well, but it is up to you to make sure of this.  A file can
+validly exist without a Newline at the end.
+
+>> Try to C-b at the beginning of a line.  Do a few more C-b's.
+   Then do C-f's back to the end of the line and beyond.
+
+When you go off the top or bottom of the screen, the text beyond
+the edge is shifted onto the screen so that your instructions can
+be carried out while keeping the cursor on the screen.
+
+>> Try to move the cursor off the bottom of the screen with C-n and
+   see what happens.
+
+If moving by characters is too slow, you can move by words.  M-f
+(Meta-f) moves forward a word and M-b moves back a word.
+
+>> Type a few M-f's and M-b's.  Intersperse them with C-f's and C-b's.
+
+Notice the parallel between C-f and C-b on the one hand, and M-f and
+M-b on the other hand.  Very often Meta characters are used for
+operations related to English text whereas Control characters operate
+on the basic textual units that are independent of what you are
+editing (characters, lines, etc).  There is a similar parallel between
+lines and sentences: C-a and C-e move to the beginning or end of a
+line, and M-a and M-e move to the beginning or end of a sentence.
+
+>> Try a couple of C-a's, and then a couple of C-e's.
+   Try a couple of M-a's, and then a couple of M-e's.
+
+...
+
+
+Here is a summary of simple moving operations including the word and
+sentence moving commands:
+
+	C-f	Move forward a character
+	C-b	Move backward a character
+
+	M-f	Move forward a word
+	M-b	Move backward a word
+
+	C-n	Move to next line
+	C-p	Move to previous line
+
+	C-a	Move to beginning of line
+	C-e	Move to end of line
+
+	M-a	Move back to beginning of sentence
+	M-e	Move forward to end of sentence
+
+	M-<	Go to beginning of file
+	M->	Go to end of file
+
+>> Try all of these commands now a few times for practice.
+   Since the last two will take you away from this screen,
+   you can come back here with M-v's and C-v's.  These are
+   the most often used commands.
+
+...
+
+* INSERTING AND DELETING
+------------------------
+
+If you want to insert text, just type it.  Characters which you can
+see, such as A, 7, *, etc. are taken by Emacs as text and inserted
+immediately.  Type <Return> (the carriage-return key) to insert a
+Newline character.
+
+You can delete the last character you typed by typing <Delete>.
+<Delete> is a key on the keyboard, which may be labeled "Del".  In
+some cases, the "Backspace" key serves as <Delete>, but not always!
+
+More generally, <Delete> deletes the character immediately before the
+current cursor position.
+
+>> Do this now, type a few characters and then delete them
+   by typing <Delete> a few times.  Don't worry about this file
+   being changed; you won't affect the master tutorial.  This is just
+   a copy of it.
+
+>> Now start typing text until you reach the right margin, and keep
+   typing.  When a line of text gets too big for one line on the
+   screen, the line of text is "continued" onto a second screen line.
+   The backslash at the right margin indicates a line which has
+   been continued.
+>> Use <Delete>s to delete the text until the line fits on one screen
+   line again.  The continuation line goes away.
+
+>> Move the cursor to the beginning of a line and type <Delete>.  This
+   deletes the newline before the line and merges the line onto
+   the previous line.  The resulting line may be too long to fit, in
+   which case it has a continuation line.
+>> Type <Return> to reinsert the Newline you deleted.
+
+Remember that most Emacs commands can be given a repeat count;
+this includes characters which insert themselves.
+
+
+You've now learned the most basic way of typing something in
+Emacs and correcting errors.  You can delete by words or lines
+as well.  Here is a summary of the delete operations:
+
+	<Delete>     delete the character just before the cursor
+	C-d   	     delete the next character after the cursor
+
+	M-<Delete>   kill the word immediately before the cursor
+	M-d	     kill the next word after the cursor
+
+	C-k	     kill from the cursor position to end of line
+	M-k	     kill to the end of the current sentence
+
+...
+
+
+* FILES
+-------
+
+In order to make the text you edit permanent, you must put it in a
+file.  Otherwise, it will go away when your invocation of Emacs goes
+away.  You put your editing in a file by "finding" the file.  What
+finding means is that you see the contents of the file in your Emacs;
+and, loosely speaking, what you are editing is the file itself.
+However, the changes still don't become permanent until you "save" the
+file.  This is so you can have control to avoid leaving a half-changed
+file around when you don't want to.  Even then, Emacs leaves the
+original file under a changed name in case your changes turn out
+to be a mistake.
+
+If you look near the bottom of the screen you will see a line that
+begins and ends with dashes, and contains the string "Emacs:
+Emacs_tutorial".  Your copy of the Emacs tutorial is called
+"Emacs_tutorial".  Whatever file you find, that file's name will
+appear in that precise spot.
+
+The commands for finding and saving files are unlike the other
+commands you have learned in that they consist of two characters.
+They both start with the character Control-x.  There is a whole series
+of commands that start with Control-x; many of them have to do with
+files, buffers, and related things, and all of them consist of
+Control-x followed by some other character.
+
+Another thing about the command for finding a file is that you have
+to say what file name you want.  We say the command "reads an argument
+from the terminal" (in this case, the argument is the name of the
+file).  After you type the command
+
+	C-x C-f   Find a file
+
+Emacs asks you to type the file name.  It echoes on the bottom
+line of the screen.  You are using the minibuffer now!  this is
+what the minibuffer is for.  When you type <Return> to end the
+file name, the minibuffer is no longer needed, so it disappears.
+
+>> Type C-x C-f, then type C-g.  This cancels the minibuffer,
+   and also cancels the C-x C-f command that was using the
+   minibuffer.  So you do not find any file.
+
+In a little while the file contents appear on the screen.  You can
+edit the contents.  When you wish to make the changes permanent,
+issue the command
+
+	C-x C-s   Save the file
+
+The contents of Emacs are written into the file.  The first time you
+do this, the original file is renamed to a new name so that it
+is not lost.  The new name is made by appending "~" to the end
+of the original file's name.
+
+When saving is finished, Emacs prints the name of the file written.
+You should save fairly often, so that you will not lose very much
+work if the system should crash.
+
+>> Type C-x C-s, saving your copy of the tutorial.
+   This should print "Wrote .../Emacs_tutorial" at the bottom of
+   the screen.  
+
+NOTE: On some systems, typing C-x C-s will freeze the screen and you
+will see no further output from Emacs.  This indicates that an
+operating system "feature" called "flow control" is intercepting the
+C-s and not letting it get through to Emacs.  To unfreeze the screen,
+type C-q.  Then see the section "Spontaneous Entry to Incremental
+Search" in the Emacs manual for advice on dealing with this "feature".
+
+To make a new file, just find it "as if" it already existed.  Then
+start typing in the text.  When you ask to "save" the file, Emacs
+will really create the file with the text that you have inserted.
+From then on, you can consider yourself to be editing an already
+existing file.
+
+
+* EXITING
+-------
+
+
+To exit emacs you can use the File pulldown menu and select "Exit
+Emacs."  Alternatively, you can type C-x C-c.  If you've forgotten to
+save your file, emacs will give you the chance to do so before it
+exits.

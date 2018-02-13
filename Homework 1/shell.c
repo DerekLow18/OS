@@ -75,7 +75,9 @@ int parsePath(char *dirs[]) {
       After i iteration, set the next dirs pointer to the iterated nextcharptr.
      */
     if (*nextcharptr == ':'){
-      *nextcharptr = '\0';
+        while(*nextcharptr==':'){//handle that double colon case
+            *nextcharptr = '\0';
+        }
       nextcharptr++;
       //iterate to the next item so that it is possible to set the next dirs entry to the character
       //after a colon in the path
@@ -226,13 +228,13 @@ void addJobs(struct Jobs *job[], int pid, char *exe, int counter){
     //fill the appropriate fields
     job[i]->id = counter;
     job[i]->pid = pid;
-    job[i]->exename = (char *) malloc(strlen(exe));//malloc space for a string copy of the cmd name
+    job[i]->exename = (char *) malloc(strlen(exe)+1);//malloc space for a string copy of the cmd name
     strcpy(job[i]->exename,exe);
 }
 //killing jobs
 void killJob(struct Jobs *job[],int killTarget){
     int i;
-    int found = 0;
+    int found = 0;//"boolean", not really necessary
     for (i=0; i <MAX_JOBS;i++){
         if (job[i]->id == killTarget){
             //first, kill the process
@@ -240,13 +242,13 @@ void killJob(struct Jobs *job[],int killTarget){
             free(job[i]->exename);//free the cmd name
             free(job[i]);//free the job struct memory
             found = 1;
-            printf("Your requested process has been killed.\n");
+            printf("Your requested process has been killed.\n");//inform that the process has been successfully killed.
             job[i] = (struct Jobs *) malloc(sizeof(struct Jobs));//fill the remaining with a random job
             job[i]->pid = 0;//set pid for purposes of print and add
             break;//leave the function
         }
     }
-    if (found == 0) printf("Could not locate process.");// could not locate the pid
+    if (found == 0) printf("Could not locate process.\n");// could not locate the pid
 }
 
 /*
@@ -264,7 +266,7 @@ int main(int argc, char *argv[]) {
   pid_t pid;
   int numJobs,i,status;
   char buffer[512];
-  int jobCount = 1;
+  int jobCount = 1;//so that every process has a unique ID
 
   preallocating(job);
   numPaths = parsePath(dirs);
@@ -293,7 +295,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    if (fgets(cmdline,LINE_LEN,stdin) != NULL && cmdline[0] != '\n'){
+    if (fgets(cmdline,LINE_LEN,stdin) != NULL && cmdline[0] != '\n'){//request a command 
         //call parseCmd function to parse the different portions of the command entered, since there may be 
         //multiple arguments in a command
       	argcount = parseCmd(cmdline,cmd);
@@ -305,7 +307,7 @@ int main(int argc, char *argv[]) {
         }//first check to make sure there are no jobs in the list that are done running, then print the list of current bg processes
         else if ((strcmp(cmd->argv[0],"jobs")) == 0){
             for (i=0;i<MAX_JOBS;i++){
-                if(waitpid(job[i]->pid,&status,WNOHANG)!=0){
+                if(waitpid(job[i]->pid,&status,WNOHANG)!=0){//check if the child process of a particular pid is complete or not
                     free(job[i]);
                     job[i] = (struct Jobs *) malloc(sizeof(struct Jobs));
                 }
@@ -335,9 +337,9 @@ int main(int argc, char *argv[]) {
                 for (i = 0;i<MAX_JOBS;i++){
                     if (job[i]->pid !=0) arraySize++;
                 }
-                printf("The array size is %d out of %d possible\n",arraySize,MAX_JOBS);
+                printf("There are currently %d jobs out of %d possible jobs.\n",arraySize,MAX_JOBS);
                 if (arraySize == MAX_JOBS+1){
-                    printf("You are requesting more than the permitted amount of background processes. This process will run in foreground.");
+                    printf("You are requesting more than the permitted amount of background processes. This process will run in foreground.\n");
                     fflush(stdout);//make sure the user sees the message.
                     waitpid(pid,&status,0);
                 }
